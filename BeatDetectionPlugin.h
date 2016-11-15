@@ -1,10 +1,3 @@
-
-// This is a skeleton file for use in creating your own plugin
-// libraries.  Replace BeatDetectionPlugin and myPlugin throughout with the name
-// of your first plugin class, and fill in the gaps as appropriate.
-
-
-// Remember to use a different guard symbol in each header!
 #ifndef _BEAT_DETECTION_PLUGIN_H_
 #define _BEAT_DETECTION_PLUGIN_H_
 
@@ -12,9 +5,7 @@
 
 using std::string;
 
-
-class BeatDetectionPlugin : public Vamp::Plugin
-{
+class BeatDetectionPlugin : public Vamp::Plugin {
 public:
     BeatDetectionPlugin(float inputSampleRate);
     virtual ~BeatDetectionPlugin();
@@ -36,9 +27,11 @@ public:
     float getParameter(string identifier) const;
     void setParameter(string identifier, float value);
 
+    /*
     ProgramList getPrograms() const;
     string getCurrentProgram() const;
     void selectProgram(string name);
+    */
 
     OutputList getOutputDescriptors() const;
 
@@ -51,17 +44,15 @@ public:
     FeatureSet getRemainingFeatures();
 
 protected:
-    // plugin-specific data and methods go here
     float mInputSampleRate;
-    int mStepSize;
-    float mCounter;
+    size_t mStepSize;
+
+    float mDownSampleCounter;
     float mProcessEvery;
     int mBeatCounter;
-    
+
     bool mBeatStatus;
     Vamp::RealTime mBeatStart;
 };
-
-
 
 #endif
